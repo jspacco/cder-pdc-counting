@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Results</title>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const winnersExist = /*[[${winners.size() > 0}]]*/ false;
+        if (!winnersExist) {
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+        }
+        /*]]>*/
+    </script>
+</head>
+<body>
+<h2 th:text="'Results for vote round ' + ${voteNum}"></h2>
+<p th:if="${message}" th:text="${message}" style="color:red;"></p>
+
+
+<ul>
+    <li th:each="vote : ${votes}"
+        th:text="${vote.username} + ' voted for ' + ${vote.numberVotedFor}"></li>
+</ul>
+
+<div th:if="${winners.size() > 0}">
+    <h3>Winners</h3>
+    <ul>
+        <li th:each="winner : ${winners}"
+            th:text="${winner.username} + ' (' + ${winner.numberVotedFor} + ')'"></li>
+    </ul>
+
+    <form th:action="@{'/next/' + ${id} + '/' + ${voteNum}}" method="post">
+        <button type="submit">Go to Next Round</button>
+    </form>
+</div>
+
+<div th:if="${winners.size() == 0 and noWinner}">
+    <h2>Nobody wins this round! Not enough votes for any number</h2>
+    <form th:action="@{'/next/' + ${id} + '/' + ${voteNum}}" method="post">
+        <button type="submit">Go to Next Round</button>
+    </form>
+</div>
+
+<div th:if="{winners.size() == 0 && !noWinner}">
+    <h2>No winners yet. Waiting for more votes...</h2>
+</div>
+</body>
+</html>
