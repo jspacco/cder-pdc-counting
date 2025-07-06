@@ -8,6 +8,10 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Manages user sessions and vote rounds.
+ * Provides methods to create sessions, record votes, and retrieve results.
+ */
 @Component
 public class VoteManager 
 {

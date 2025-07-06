@@ -91,7 +91,7 @@ public class VoteController
             redirectAttributes.addAttribute("message", "Illegal vote, please try again.");
             redirectAttributes.addAttribute("max", manager.getOrCreateRound(voteNum).getN());
             // re-render vote form with error message
-            return "redirect:/vote/" + id + "/" + voteNum;
+            return "redirect:/vote/" + voteNum + "?id=" + id;
         }
 
         // otherwise, the vote was successful
@@ -125,9 +125,10 @@ public class VoteController
     }
 
 
-    @PostMapping("/next/{id}/{vote_num}")
-    public String nextRound(@PathVariable UUID id,
-                            @PathVariable int vote_num) {
+    @PostMapping("/next/{vote_num}")
+    public String nextRound(@PathVariable int vote_num,
+                            @RequestParam UUID id)
+    {
         var session = manager.getSession(id).orElseThrow();
 
         // Only allow advancing from current round
@@ -135,7 +136,7 @@ public class VoteController
             session.incrementVoteNum();
         }
 
-        return "redirect:/vote/" + id + "/" + session.getCurrentVoteNum();
+        return "redirect:/vote" + "?id=" + session.getCurrentVoteNum();
     }
 
 }

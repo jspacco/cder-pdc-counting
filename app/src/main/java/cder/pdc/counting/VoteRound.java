@@ -8,6 +8,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * Represents a voting round in the game.
+ * N: Number of choices (1 to N).
+ * V: Votes needed for a number to win.
+ * K: Minimum votes required to be considered a winner.
+ * C: Maximum votes allowed before the round ends.
+ * 
+ */
 public class VoteRound 
 {
     // pick a number from 1 to N
@@ -50,6 +58,7 @@ public class VoteRound
 
     public synchronized boolean isMaxVotesReached() {
         // Check if we have reached the max number of votes
+        //System.out.println("Total votes: " + allVotes.size() + ", Max votes allowed: " + C);
         return allVotes.size() >= C; 
     }
 

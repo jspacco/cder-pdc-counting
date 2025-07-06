@@ -7,6 +7,10 @@ import jakarta.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Vote configuration. Reads values from application.yml (or eventually command line).
+ * TODO: rename VoteConfiguration or VoteProperties
+ */
 @Component
 @ConfigurationProperties(prefix = "vote")
 public class VoteState {

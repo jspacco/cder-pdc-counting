@@ -3,11 +3,11 @@
 <head><title>Vote</title></head>
 <body>
 <p th:if="${message}" th:text="${message}" style="color:red;"></p>
-<h2 th:text="'Vote #' + ${voteNum}"></h2>
+<h2 th:text="${'Vote #' + voteNum}"></h2>
 <h2 th:text="'Vote for a number between 1 and ' + ${max}"></h2>
 <div th:each="i : ${#numbers.sequence(1, max)}">
-    <form th:action="@{'/vote/' + ${id} + '/' + ${voteNum} + '/' + ${i}}" method="post">
-        <button type="submit" th:text="'Vote for ' + ${i}"></button>
+    <form th:action="@{|/vote/${id}/${voteNum}/${i}|}" method="post">
+        <button type="submit" th:text="|Vote for ${i}|"></button>
     </form>
 </div>
 </body>

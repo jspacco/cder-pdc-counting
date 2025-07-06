@@ -1,5 +1,7 @@
 # Ideas
 
+THIS TURNED OUT TO BE UNINTERESTING.
+
 ## Distributed counting
 * POST /count with a unique ID and a number
 * GET /count/{id} to retrieve the count for that ID

@@ -42,7 +42,7 @@
     </form>
 </div>
 
-<div th:if="{winners.size() == 0 && !noWinner}">
+<div th:if="${winners.size() == 0 and not noWinner}">
     <h2>No winners yet. Waiting for more votes...</h2>
 </div>
 </body>
